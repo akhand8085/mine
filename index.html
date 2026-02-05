@@ -120,6 +120,11 @@ button {
 
 <body>
 
+<!-- 🎵 MUSIC (GitHub-safe) -->
+<audio id="loveMusic" loop>
+    <source src="music/myheartwillgoon.mp3" type="audio/mp3">
+</audio>
+
 <div class="wrapper">
     <div class="container">
 
@@ -145,25 +150,23 @@ button {
 </div>
 
 <script>
-/* ===== NO BUTTON (SLIDES, NEVER DISAPPEARS) ===== */
 const noBtn = document.getElementById("no");
+const music = document.getElementById("loveMusic");
 
+/* NO button slide */
 function moveNo() {
-    const padding = 10;
-
-    const maxX = window.innerWidth - noBtn.offsetWidth - padding;
-    const maxY = window.innerHeight - noBtn.offsetHeight - padding;
-
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
+    const maxX = window.innerWidth - noBtn.offsetWidth - 10;
+    const maxY = window.innerHeight - noBtn.offsetHeight - 10;
 
     noBtn.style.position = "fixed";
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
+    noBtn.style.left = Math.random() * maxX + "px";
+    noBtn.style.top = Math.random() * maxY + "px";
 }
 
-/* ===== YES CLICK WITH MUSIC ===== */
+/* YES click */
 function yesClicked() {
+    music.play(); // ✅ GitHub allows this
+
     document.body.innerHTML = `
         <div style="
             height:100vh;
@@ -174,11 +177,6 @@ function yesClicked() {
             background:linear-gradient(135deg,#ff758c,#ff7eb3);
             text-align:center;
         ">
-
-            <audio autoplay loop>
-                <source src="Celline_Dion_-_My_Heart_Will_Go_On_(mp3.pm).mp3" type="audio/mp3">
-            </audio>
-
             <iframe 
                 src="https://tenor.com/embed/7549072801185261876"
                 width="160"
@@ -201,7 +199,7 @@ function yesClicked() {
     `;
 }
 
-/* Floating hearts */
+/* Hearts */
 setInterval(() => {
     const h = document.createElement("div");
     h.className = "heart";
