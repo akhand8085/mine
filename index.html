@@ -19,7 +19,7 @@ body {
     overflow: hidden;
 }
 
-/* Floating Names */
+/* ===== Floating Names ===== */
 .floating-name {
     position: absolute;
     color: rgba(255, 0, 85, 0.35);
@@ -30,11 +30,15 @@ body {
 }
 
 @keyframes slideName {
-    from { transform: translateX(-20vw); }
-    to { transform: translateX(120vw); }
+    from {
+        transform: translateX(-20vw);
+    }
+    to {
+        transform: translateX(120vw);
+    }
 }
 
-/* Card */
+/* ===== Card ===== */
 .wrapper {
     height: 100vh;
     display: flex;
@@ -55,7 +59,7 @@ body {
     box-shadow: 0 20px 40px rgba(0,0,0,0.25);
 }
 
-/* Text */
+/* ===== Text ===== */
 h1 {
     margin-top: 15px;
     font-size: 24px;
@@ -72,7 +76,7 @@ h1 {
     to { text-shadow: 0 0 15px #ff1e56; }
 }
 
-/* Buttons */
+/* ===== Buttons ===== */
 .buttons {
     margin-top: 30px;
     display: flex;
@@ -101,9 +105,10 @@ button {
     background: white;
     color: #ff1e56;
     position: relative;
+    transition: transform 0.6s ease;
 }
 
-/* Hearts */
+/* ===== Hearts ===== */
 .heart {
     position: absolute;
     bottom: -10px;
@@ -122,7 +127,7 @@ button {
 
 <div class="wrapper">
     <div class="container">
-
+        <!-- FIRST GIF (YOUR PROVIDED TENOR LINK) -->
         <iframe 
             src="https://tenor.com/embed/24422070"
             width="130"
@@ -145,24 +150,24 @@ button {
 </div>
 
 <script>
-/* ===== NO BUTTON (SLIDES, NEVER DISAPPEARS) ===== */
+/* ===== NO BUTTON SLIDE (NEVER VANISHES) ===== */
 const noBtn = document.getElementById("no");
+let x = 0, y = 0;
 
 function moveNo() {
-    const padding = 10;
+    const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+    const maxY = window.innerHeight - noBtn.offsetHeight - 20;
 
-    const maxX = window.innerWidth - noBtn.offsetWidth - padding;
-    const maxY = window.innerHeight - noBtn.offsetHeight - padding;
-
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
+    x = Math.random() * maxX;
+    y = Math.random() * maxY;
 
     noBtn.style.position = "fixed";
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
+    noBtn.style.left = "0px";
+    noBtn.style.top = "0px";
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
 }
 
-/* ===== YES CLICK WITH MUSIC ===== */
+/* ===== YES CLICK PAGE ===== */
 function yesClicked() {
     document.body.innerHTML = `
         <div style="
@@ -174,34 +179,29 @@ function yesClicked() {
             background:linear-gradient(135deg,#ff758c,#ff7eb3);
             text-align:center;
         ">
-
-            <audio autoplay loop>
-                <source src="Celline_Dion_-_My_Heart_Will_Go_On_(mp3.pm).mp3" type="audio/mp3">
-            </audio>
-
             <iframe 
                 src="https://tenor.com/embed/7549072801185261876"
                 width="160"
                 height="160"
                 frameborder="0"
-                allowfullscreen
+                allowfullscreenS
                 style="border-radius:16px;">
             </iframe>
 
             <h1 style="font-size:38px;color:#800040;margin-top:20px;">
                 <i>Sakshi</i> ❤️
             </h1>
-
             <p style="font-size:22px;color:#4d0026;">
                 Thanks For being with me <b>My Love</b>❤️
-                <br>
+                <br />
                 <b>I Love uh Baby 🥰🌹</b>
+                
             </p>
         </div>
     `;
 }
 
-/* Floating hearts */
+/* ===== FLOATING HEARTS ===== */
 setInterval(() => {
     const h = document.createElement("div");
     h.className = "heart";
@@ -211,7 +211,7 @@ setInterval(() => {
     setTimeout(() => h.remove(), 6000);
 }, 300);
 
-/* Floating names */
+/* ===== FLOATING NAMES (NOT ON CARD) ===== */
 setInterval(() => {
     const n = document.createElement("div");
     n.className = "floating-name";
